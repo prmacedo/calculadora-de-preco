@@ -1,0 +1,142 @@
+body {
+  padding: 1.5rem 0;
+}
+
+.container {
+  max-width: 1280px;
+  padding: 0 3rem;
+  margin: 0 auto;
+}
+
+section > div {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 1rem;
+}
+
+header a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+section {
+  margin-bottom: 1.5rem;
+}
+
+.inputs {
+  display: flex;
+  gap: 2rem;
+}
+
+#prices-inputs .price-form {
+  display: flex;
+  gap: 1rem;
+}
+
+.item1 { grid-area: startdate; }
+.item2 { grid-area: enddate; }
+.item3 { grid-area: chale; }
+.item4 { grid-area: apto; }
+.item5 { grid-area: button; }
+
+#high-season form {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas: 
+    'startdate startdate startdate enddate enddate enddate'
+    'chale chale apto apto button button';
+}
+
+.season-form {
+  display: flex;
+  gap: 2rem;
+}
+
+#interval-section form {
+  display: flex;
+  gap: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table, tr {
+  width: 100%;
+}
+
+th, td {
+  width: 23%;
+  text-align: left;
+  margin: 0;
+
+  padding: 1rem 1%;
+
+  border-bottom: 1px solid var(--light-black);
+}
+
+.btn-green {
+  font-size: 0.75rem;
+  padding: 0.75rem 2rem;
+  width: initial;
+  align-self: flex-end;
+}
+
+@media (max-width: 650px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  h3, .input-group label {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .inputs, 
+  #interval-section form {
+    flex-direction: column;
+  }
+
+  #prices-inputs .price-form {
+    flex-direction: column;
+  }
+
+  #interval-section form #interval {
+    width: calc(100% - 5ch);    
+  }
+
+  #interval-section form #interval+span {
+    margin-left: 1ch;
+  }
+
+  .btn-green {
+    align-self: initial;
+  }
+
+  #high-season form {
+    grid-template-areas: 
+    'startdate'
+    'enddate'
+    'chale'
+    'apto'
+    'button';
+  }
+
+  table {
+    font-size: 0.75rem;
+  }
+}

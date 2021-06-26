@@ -22,6 +22,8 @@ $interval = IntervalController::get_interval();
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="./css/global.css">
   <link rel="stylesheet" href="./css/index.css">
 </head>
@@ -29,7 +31,13 @@ $interval = IntervalController::get_interval();
 <body>
   <main id="calculator">
     <h1>Calculadora de preço</h1>
-    <form action="result.php" method="POST">
+
+    <div class="message">
+      Número total de pessoas deve ser maior que zero
+      <span onclick="toggleActiveMessage()"><i class="fa fa-times" aria-hidden="true"></i></span>
+    </div>
+
+    <form action="result.php" method="POST" onsubmit="validatePeopleFields(event)">
       <div class="input-group" class="item1">
         <label for="type">Tipo de reserva</label>
         <select name="type" id="type" required>
@@ -65,7 +73,7 @@ $interval = IntervalController::get_interval();
           </div>
 
           <div class="people-group">
-            <div>Crianças abaixo de 6 anos</div>
+            <div>Crianças com menos de 6 anos</div>
             <div class="buttons">
               <button type="button" onclick="subtract('underSix')"> - </button>
               <span id="underSix-quantity">0</span>
@@ -83,7 +91,7 @@ $interval = IntervalController::get_interval();
           </div>
 
           <div class="people-group">
-            <div>Crianças abaixo de 11 anos</div>
+            <div>Crianças entre 6 e 11 anos</div>
             <div class="buttons">
               <button type="button" onclick="subtract('underEleven')"> - </button>
               <span id="underEleven-quantity">0</span>

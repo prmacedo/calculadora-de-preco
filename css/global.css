@@ -8,6 +8,10 @@
   
   --green: #32D86B;
   --green-dark: #1bb150;
+
+  --red: #F88F8F;
+  --red-dark: #D64C4C;
+  --red-darker: #9C2F2F;
 }
 
 * {

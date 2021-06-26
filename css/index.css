@@ -20,7 +20,35 @@ body {
 
 #calculator h1 {
   text-align: center;
+}
+
+/* ERROR MESSAGE */
+.message {
+  display: none;
+}
+
+.message.active {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: var(--red);
+  
+  color: var(--red-darker);
+
+  border: 2px solid var(--red-dark);
+  border-radius: 0.5rem;
+
+  padding: 0.5rem 1rem;
   margin-bottom: 1rem;
+}
+
+.message.active span {
+  cursor: pointer;
+}
+
+.message.active span i {
+  color: var(--red-darker);
 }
 
 /* GRID AREAS AND FORM ================================================================== */

@@ -1,3 +1,4 @@
+// Lógica para check-in e check-out
 const today = new Date().toISOString().split("T")[0];
 
 const lastDay = new Date();
@@ -39,4 +40,24 @@ function handleCheckin() {
 
   checkout.disabled = false;
   checkout.min = dayAfterCheckinFormatted;
+}
+
+// onSubmit do fomulário
+function validatePeopleFields(evt) {
+  const single = Number(document.querySelector("input#single").value);
+  const couple = Number(document.querySelector("input#couple").value);
+  const underSix = Number(document.querySelector("input#underSix").value);
+  const underEleven = Number(document.querySelector("input#underEleven").value);
+
+  const amount = single + couple + underSix + underEleven;
+
+  if (amount <= 0) {
+    evt.preventDefault();
+
+    toggleActiveMessage();
+  }
+}
+
+function toggleActiveMessage() {
+  document.querySelector(".message").classList.toggle("active");
 }

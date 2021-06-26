@@ -4,17 +4,6 @@ if (empty($_POST)) {
   header('Location: ./');
 }
 
-$single = $_POST["single"];
-$couple = $_POST["couple"];
-$underSix = $_POST["underSix"];
-$underEleven = $_POST["underEleven"];
-
-$total_amount = $single + $couple + $underSix + $underEleven;
-
-if ($total_amount == 0) {
-  header('Location: ./');
-}
-
 require_once "./controller/CalculatorController.php";
 
 // Calcula a quantidade de dias entre check-in e check-out
@@ -66,35 +55,35 @@ $checkout = (new DateTime($_POST["checkout"])) -> format('d/m/Y');;
 
     <div class="info">
       <span>R$ <?= $formated_price_per_day ?> / dia</span>
-      <span><?= $interval_in_days ?> dias</span>
+      <span><?= $interval_in_days ?> dia(s)</span>
     </div>
 
     <div class="people-statistics">
-      <?php if ($single > 0) { ?>
+      <?php if ($_POST["single"] > 0) { ?>
         <p>
           <span class="number"><?= $_POST["single"] ?></span>
           <span>Individual</span>
         </p>
       <?php } ?>
 
-      <?php if ($couple > 0) { ?>
+      <?php if ($_POST["couple"] > 0) { ?>
         <p>
           <span class="number"><?= $_POST["couple"] ?></span>
           <span>Casal</span>
         </p>
       <?php } ?>
 
-      <?php if ($underSix > 0) { ?>
+      <?php if ($_POST["underSix"] > 0) { ?>
         <p>
           <span class="number"><?= $_POST["underSix"] ?></span>
-          <span>Criança abaixo de 6 anos</span>
+          <span>Criança com menos de 6 anos</span>
         </p>
       <?php } ?>
 
-      <?php if ($underEleven > 0) { ?>
+      <?php if ($_POST["underEleven"] > 0) { ?>
         <p>
           <span class="number"><?= $_POST["underEleven"] ?></span>
-          <span>Criança abaixo de 11 anos</span>
+          <span>Criança entre 6 e 11 anos</span>
         </p>
       <?php } ?>
     </div>

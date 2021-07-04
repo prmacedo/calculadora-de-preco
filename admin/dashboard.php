@@ -135,7 +135,7 @@ $high_seasons = HighSeasonController::get_all_high_seasons();
           </div>
 
           <div class="input-group item4">
-            <label for="room-2">Apto chalé</label>
+            <label for="room-2">Preço apartamento</label>
             <input type="number" name="room-2" id="room-2" value="<?= $rooms[1]->getBasePrice(); ?>" placeholder="00,00" step="0.10" min="0" max="99999.99" required>
           </div>
 

@@ -101,4 +101,21 @@ class HighSeasonDAO {
       return false;
     }
   }
+
+  public function delete_high_season($id) {
+    try {
+      $sql = "DELETE FROM high_seasons WHERE id = :id";
+
+      $connection = Connection::connect();
+
+      $stmt = $connection->prepare($sql);
+      $stmt->bindParam(":id", $id);
+
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
 }

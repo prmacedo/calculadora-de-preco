@@ -4,6 +4,10 @@ function toggleDisplay(modalType) {
       document.querySelector(`#${modalType}`).classList.toggle('hide');
       break;
       
+    case 'modal-delete':
+      document.querySelector(`#${modalType}`).classList.toggle('hide');
+      break;
+
     default:
       break;
   }
@@ -28,4 +32,10 @@ function editHighSeason(highSeason) {
   document.querySelector('#modal-edit form #edit-room-2').value = priceRoom2;
 
   toggleDisplay('modal-edit');
+}
+
+function deleteHighSeason(highSeason) {
+  document.querySelector('#modal-delete form #id-delete').value = highSeason.id;
+
+  toggleDisplay('modal-delete');
 }

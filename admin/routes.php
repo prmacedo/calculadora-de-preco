@@ -49,6 +49,10 @@ switch ($action) {
   case 'edit high season':
     $isTrue = HighSeasonController::edit_high_season($_POST);
     break;
+
+  case 'delete high season':
+    $isTrue = HighSeasonController::delete_high_season($_POST);
+    break;
   
   default:
     # code...

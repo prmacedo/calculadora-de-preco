@@ -111,7 +111,7 @@ th:last-child, td:last-child {
   align-self: flex-end;
 }
 
-#modal-edit {
+.modal {
   position: fixed;
 
   top: 0;
@@ -158,7 +158,7 @@ th:last-child, td:last-child {
   display: none!important;
 }
 
-#modal-edit > .content {
+.modal > .content {
   position: relative;
 
   background: var(--white);
@@ -172,7 +172,7 @@ th:last-child, td:last-child {
   padding: 2rem 3rem;
 }
 
-#modal-edit > .content h2 {
+.modal > .content h2 {
   margin-bottom: 0.5rem;
 }
 
@@ -183,6 +183,14 @@ th:last-child, td:last-child {
     'startdate enddate'
     'chale apto'
     'button button';
+}
+
+#modal-delete form {
+  margin-top: 1rem;
+}
+
+#modal-delete form button {
+  width: 100%;
 }
 
 @media (max-width: 650px) {
@@ -252,5 +260,15 @@ th:last-child, td:last-child {
       'chale' 
       'apto'
       'button';
+  }
+
+  #modal-delete > .content {
+    max-width: 90%;
+    padding: 2rem;
+  }
+
+  #modal-delete .close-modal-btn {
+    top: 2rem;
+    right: 2rem;
   }
 }

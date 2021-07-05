@@ -163,23 +163,23 @@ $high_seasons = HighSeasonController::get_all_high_seasons();
 
           <tbody>
             <?php foreach ($high_seasons as $season) {
-              $season_info['id'] = $season -> getId();
-              $season_info['start'] = $season -> getStart();
-              $season_info['end'] = $season -> getEnd();
-              $season_info['price_room_1'] = $season -> getPriceRoom1();
-              $season_info['price_room_2'] = $season -> getPriceRoom2();
+              $season_info['id'] = $season->getId();
+              $season_info['start'] = $season->getStart();
+              $season_info['end'] = $season->getEnd();
+              $season_info['price_room_1'] = $season->getPriceRoom1();
+              $season_info['price_room_2'] = $season->getPriceRoom2();
 
               $json_season = json_encode($season_info);
             ?>
               <tr>
-                <td><?= $season -> getStart() ?></td>
-                <td><?= $season -> getEnd() ?></td>
-                <td>R$ <?= $season -> getPriceRoom1() ?></td>
-                <td>R$ <?= $season -> getPriceRoom2() ?></td>
+                <td><?= $season->getStart() ?></td>
+                <td><?= $season->getEnd() ?></td>
+                <td>R$ <?= $season->getPriceRoom1() ?></td>
+                <td>R$ <?= $season->getPriceRoom2() ?></td>
                 <td class="table-options">
                   <span class="options-menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></span>
                   <span class="options-edit" title="Editar" <?= "onclick = 'editHighSeason($json_season)'" ?>><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                  <span class="options-delete" title="Excluir"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                  <span class="options-delete" title="Excluir" <?= "onclick = 'deleteHighSeason($json_season)'" ?>><i class="fa fa-trash-o" aria-hidden="true"></i></span>
                 </td>
               </tr>
             <?php } ?>
@@ -191,7 +191,7 @@ $high_seasons = HighSeasonController::get_all_high_seasons();
     </section>
   </main>
 
-  <div id="modal-edit" class="hide">
+  <div id="modal-edit" class="modal hide">
     <div class="overlay"></div>
     <div class="content">
       <span title="Fechar" class="close-modal-btn" onclick="toggleDisplay('modal-edit')"><i class="fa fa-times" aria-hidden="true"></i></span>
@@ -221,6 +221,22 @@ $high_seasons = HighSeasonController::get_all_high_seasons();
         </div>
 
         <button type="submit" class="btn-green item5">Salvar</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-delete" class="modal hide">
+    <div class="overlay"></div>
+    <div class="content">
+      <span title="Fechar" class="close-modal-btn" onclick="toggleDisplay('modal-delete')"><i class="fa fa-times" aria-hidden="true"></i></span>
+
+      <h2>Excluir Alta Temporada</h2>
+      <p>Tem certeza que deseja excluir este registro?</p>
+
+      <form action="./routes.php" method="post">
+        <input type="hidden" name="action" value="delete high season">
+        <input type="hidden" name="id" id="id-delete">
+        <button type="submit" class="btn-green">Confirmar</button>
       </form>
     </div>
   </div>

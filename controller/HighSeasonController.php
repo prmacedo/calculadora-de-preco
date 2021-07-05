@@ -18,4 +18,9 @@ class HighSeasonController {
     $high_season_DAO = new HighSeasonDAO();
     return $high_season_DAO -> update_high_season($high_season);
   }
+  
+  public static function delete_high_season($post) {
+    $high_season_DAO = new HighSeasonDAO();
+    return $high_season_DAO -> delete_high_season($post["id"]);
+  }
 }

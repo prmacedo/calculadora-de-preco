@@ -157,26 +157,75 @@ $high_seasons = HighSeasonController::get_all_high_seasons();
               <th>Fim</th>
               <th>Preço chalé</th>
               <th>Preço apto.</th>
+              <th></th>
             </tr>
           </thead>
 
           <tbody>
-            <?php foreach ($high_seasons as $season) { ?>
+            <?php foreach ($high_seasons as $season) {
+              $season_info['id'] = $season -> getId();
+              $season_info['start'] = $season -> getStart();
+              $season_info['end'] = $season -> getEnd();
+              $season_info['price_room_1'] = $season -> getPriceRoom1();
+              $season_info['price_room_2'] = $season -> getPriceRoom2();
+
+              $json_season = json_encode($season_info);
+            ?>
               <tr>
                 <td><?= $season -> getStart() ?></td>
                 <td><?= $season -> getEnd() ?></td>
-                <td><?= $season -> getPriceRoom1() ?></td>
-                <td><?= $season -> getPriceRoom2() ?></td>
+                <td>R$ <?= $season -> getPriceRoom1() ?></td>
+                <td>R$ <?= $season -> getPriceRoom2() ?></td>
+                <td class="table-options">
+                  <span class="options-menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></span>
+                  <span class="options-edit" title="Editar" <?= "onclick = 'editHighSeason($json_season)'" ?>><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                  <span class="options-delete" title="Excluir"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                </td>
               </tr>
             <?php } ?>
 
-            
+
           </tbody>
         </table>
       </div>
     </section>
   </main>
 
+  <div id="modal-edit" class="hide">
+    <div class="overlay"></div>
+    <div class="content">
+      <span title="Fechar" class="close-modal-btn" onclick="toggleDisplay('modal-edit')"><i class="fa fa-times" aria-hidden="true"></i></span>
+
+      <h2>Editar alta temporada</h2>
+      <form action="./routes.php" method="post">
+        <input type="hidden" name="action" value="edit high season">
+        <input type="hidden" name="id" id="id">
+        <div class="input-group item1">
+          <label for="edit-start">Início</label>
+          <input type="date" name="start" id="edit-start" required>
+        </div>
+
+        <div class="input-group item2">
+          <label for="edit-end">Fim</label>
+          <input type="date" name="end" id="edit-end" required>
+        </div>
+
+        <div class="input-group item3">
+          <label for="edit-room-1">Preço chalé</label>
+          <input type="number" name="room-1" id="edit-room-1" placeholder="00,00" step="0.10" min="0" max="99999.99" required>
+        </div>
+
+        <div class="input-group item4">
+          <label for="edit-room-2">Preço apartamento</label>
+          <input type="number" name="room-2" id="edit-room-2" placeholder="00,00" step="0.10" min="0" max="99999.99" required>
+        </div>
+
+        <button type="submit" class="btn-green item5">Salvar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="./dashboard.js"></script>
 </body>
 
 </html>

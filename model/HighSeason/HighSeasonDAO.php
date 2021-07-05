@@ -41,8 +41,8 @@ class HighSeasonDAO {
       while ($data = $stmt->fetch()) {
         $start = $data["DATE_FORMAT(start, '%d/%m/%Y')"];
         $end = $data["DATE_FORMAT(end, '%d/%m/%Y')"];
-        $price_1 = "R$ ".number_format($data["price_room_1"], 2, ',', '.');
-        $price_2 = "R$ ".number_format($data["price_room_2"], 2, ',', '.');
+        $price_1 = number_format($data["price_room_1"], 2, ',', '.');
+        $price_2 = number_format($data["price_room_2"], 2, ',', '.');
 
         $season = new HighSeason($data["id"], $price_1, $price_2, $start, $end);
 
@@ -72,6 +72,33 @@ class HighSeasonDAO {
       return $prices;
     } catch (PDOException $e) {
       return null;
+    }
+  }
+
+  public function update_high_season($high_season) {
+    $id = $high_season -> getId();
+    $price_room_1 = $high_season -> getPriceRoom1();
+    $price_room_2 = $high_season -> getPriceRoom2();
+    $start = $high_season -> getStart();
+    $end = $high_season -> getEnd();
+
+    try {
+      $sql = "UPDATE high_seasons SET price_room_1 = :price_room_1, price_room_2 = :price_room_2, start = :start, end = :end WHERE id = :id";
+
+      $connection = Connection::connect();
+
+      $stmt = $connection->prepare($sql);
+      $stmt->bindParam(":id", $id);
+      $stmt->bindParam(":price_room_1", $price_room_1);
+      $stmt->bindParam(":price_room_2", $price_room_2);
+      $stmt->bindParam(":start", $start);
+      $stmt->bindParam(":end", $end);
+
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      return false;
     }
   }
 }

@@ -11,4 +11,11 @@ class HighSeasonController {
     $high_season_DAO = new HighSeasonDAO();
     return $high_season_DAO -> get_high_seasons_after_today();
   }
+
+  public static function edit_high_season($post) {
+    $high_season = new HighSeason($post["id"], $post["room-1"], $post["room-2"], $post["start"], $post["end"]);
+
+    $high_season_DAO = new HighSeasonDAO();
+    return $high_season_DAO -> update_high_season($high_season);
+  }
 }

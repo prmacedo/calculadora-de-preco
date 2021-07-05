@@ -39,3 +39,7 @@ function deleteHighSeason(highSeason) {
 
   toggleDisplay('modal-delete');
 }
+
+function toggleResponsiveOptions(id) {
+  document.querySelector(`#${id}`).classList.toggle("hide");
+}

@@ -170,6 +170,8 @@ $high_seasons = HighSeasonController::get_all_high_seasons();
               $season_info['price_room_2'] = $season->getPriceRoom2();
 
               $json_season = json_encode($season_info);
+
+              $option_id = "option-" . $season->getId();
             ?>
               <tr>
                 <td><?= $season->getStart() ?></td>
@@ -177,7 +179,19 @@ $high_seasons = HighSeasonController::get_all_high_seasons();
                 <td>R$ <?= $season->getPriceRoom1() ?></td>
                 <td>R$ <?= $season->getPriceRoom2() ?></td>
                 <td class="table-options">
-                  <span class="options-menu"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></span>
+                  <span class="options-menu" onclick="toggleResponsiveOptions('<?= $option_id ?>')">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                    <div id="<?= $option_id ?>" class="hide">
+                      <p <?= "onclick = 'editHighSeason($json_season)'" ?>>
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        Editar
+                      </p>
+                      <p <?= "onclick = 'deleteHighSeason($json_season)'" ?>>
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        Excluir
+                      </p>
+                    </div>
+                  </span>
                   <span class="options-edit" title="Editar" <?= "onclick = 'editHighSeason($json_season)'" ?>><i class="fa fa-pencil" aria-hidden="true"></i></span>
                   <span class="options-delete" title="Excluir" <?= "onclick = 'deleteHighSeason($json_season)'" ?>><i class="fa fa-trash-o" aria-hidden="true"></i></span>
                 </td>
@@ -221,6 +235,7 @@ $high_seasons = HighSeasonController::get_all_high_seasons();
         </div>
 
         <button type="submit" class="btn-green item5">Salvar</button>
+        <button type="button" class="cancel-btn" onclick="toggleDisplay('modal-edit')">Cancelar</button>
       </form>
     </div>
   </div>
